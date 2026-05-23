@@ -122,7 +122,7 @@ uvicorn server:app --reload
 Backend runs on:
 
 ```bash
-http://127.0.0.1:8000
+https://hiretrack-etqe.onrender.com
 ```
 
 ---
@@ -253,7 +253,7 @@ GROQ_API_KEY=
 ## Frontend `.env`
 
 ```env
-REACT_APP_BACKEND_URL=http://127.0.0.1:8000
+REACT_APP_BACKEND_URL=https://hiretrack-etqe.onrender.com
 ```
 
 ---
