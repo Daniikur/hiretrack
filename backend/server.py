@@ -662,3 +662,6 @@ async def shutdown():
 
 
 app.include_router(api)
+@app.get("/")
+async def root():
+    return {"message": "HireTrack API Running"}
