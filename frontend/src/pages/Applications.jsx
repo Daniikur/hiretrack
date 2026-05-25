@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import api, { formatApiErrorDetail } from "@/lib/api";
 import { toast } from "sonner";
@@ -157,21 +157,32 @@ export default function Applications() {
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState(null);
 
-  const load = () => {
+  const load = useCallback(() => {
     setLoading(true);
+  
     const params = {};
+  
     if (q) params.q = q;
-    if (statusFilter !== "all") params.status = statusFilter;
-    api.get("/applications", { params })
+  
+    if (statusFilter !== "all") {
+      params.status = statusFilter;
+    }
+  
+    api
+      .get("/applications", { params })
       .then((r) => setApps(r.data))
       .finally(() => setLoading(false));
-  };
+  
+  }, [q, statusFilter]);
 
-  useEffect(() => { load(); }, [load]);
   useEffect(() => {
-    const t = setTimeout(load, 300);
+    const t = setTimeout(() => {
+      load();
+    }, 300);
+  
     return () => clearTimeout(t);
-  }, [q]);
+  
+  }, [q, load]);
 
   const remove = async (id) => {
     if (!window.confirm("Delete this application?")) return;
