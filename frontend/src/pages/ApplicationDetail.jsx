@@ -17,7 +17,7 @@ export default function ApplicationDetail() {
 
   const load = () => api.get(`/applications/${id}`).then((r) => setApp(r.data)).catch(() => nav("/app/applications"));
 
-  useEffect(() => { load(); /* eslint-disable-next-line */ }, [id]);
+  useEffect(() => { load(); /* eslint-disable-next-line */ }, [load]);
 
   const changeStatus = async (status) => {
     await api.patch(`/applications/${id}/status`, { status });

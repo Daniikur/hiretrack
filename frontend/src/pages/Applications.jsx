@@ -167,7 +167,7 @@ export default function Applications() {
       .finally(() => setLoading(false));
   };
 
-  useEffect(() => { load(); }, [statusFilter]);
+  useEffect(() => { load(); }, [load]);
   useEffect(() => {
     const t = setTimeout(load, 300);
     return () => clearTimeout(t);
