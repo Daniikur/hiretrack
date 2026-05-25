@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import api, { formatApiErrorDetail } from "@/lib/api";
 import { toast } from "sonner";
@@ -15,9 +15,16 @@ export default function ApplicationDetail() {
   const [adding, setAdding] = useState(false);
   const [summarizing, setSummarizing] = useState(false);
 
-  const load = () => api.get(`/applications/${id}`).then((r) => setApp(r.data)).catch(() => nav("/app/applications"));
+  const load = useCallback(() => {
+    api
+      .get(`/applications/${id}`)
+      .then((r) => setApp(r.data))
+      .catch(() => nav("/app/applications"));
+  }, [id, nav]);
 
-  useEffect(() => { load(); /* eslint-disable-next-line */ }, [load]);
+  useEffect(() => {
+    load();
+  }, [load]);
 
   const changeStatus = async (status) => {
     await api.patch(`/applications/${id}/status`, { status });
