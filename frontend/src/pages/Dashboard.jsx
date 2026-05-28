@@ -52,11 +52,11 @@ export default function Dashboard() {
       {stats && (
         <>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 mb-10">
-            <div className="bg-[#050505]"><StatBlock label="Total" value={stats.total} /></div>
-            <div className="bg-[#050505]"><StatBlock label="Applied" value={stats.by_status.applied} /></div>
-            <div className="bg-[#050505]"><StatBlock label="Interviewing" value={stats.by_status.interviewing} accent="text-yellow-300" /></div>
-            <div className="bg-[#050505]"><StatBlock label="Offers" value={stats.by_status.offer} accent="text-green-300" /></div>
-          </div>
+          <div className="bg-[#050505]"><StatBlock label="Total" value={stats?.total || 0} /></div>
+          <div className="bg-[#050505]"><StatBlock label="Applied" value={stats?.by_status?.applied || 0} /></div>
+          <div className="bg-[#050505]"><StatBlock label="Interviewing" value={stats?.by_status?.interviewing || 0} accent="text-yellow-300" /></div>
+          <div className="bg-[#050505]"><StatBlock label="Offers" value={stats?.by_status?.offer || 0} accent="text-green-300" /></div>
+        </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
             <div className="lg:col-span-2 glass p-8">
