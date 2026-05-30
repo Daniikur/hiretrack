@@ -12,14 +12,14 @@ import requests
 from datetime import datetime, timezone, timedelta
 from typing import List, Optional
 
-import bcrypt
-import jwt
+import bcrypt # type: ignore
+import jwt # type: ignore
 from fastapi import FastAPI, APIRouter, HTTPException, Request, Response, Depends, UploadFile, File, Query, Header
 from fastapi.responses import StreamingResponse
 from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
+from motor.motor_asyncio import AsyncIOMotorClient # type: ignore
 from pydantic import BaseModel, Field, EmailStr
-from openai import OpenAI
+from openai import OpenAI # type: ignore
 
 # ============ Config ============
 JWT_ALGORITHM = "HS256"
@@ -47,15 +47,13 @@ db = client[os.environ["DB_NAME"]]
 app = FastAPI(title="HireTrack API")
 api = APIRouter(prefix="/api")
 
-cors_origins = os.environ.get("CORS_ORIGINS", "").split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[o.strip() for o in cors_origins if o.strip()],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # ============ Local Storage ============
 UPLOAD_DIR = ROOT_DIR / "uploads"
 
