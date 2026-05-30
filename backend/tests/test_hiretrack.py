@@ -3,7 +3,7 @@ import os
 import io
 import time
 import uuid
-import pytest
+import pytest # type: ignore
 import requests
 
 BASE_URL =  "http://127.0.0.1:8000".rstrip("/")
