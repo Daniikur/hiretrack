@@ -278,7 +278,7 @@ export default function Dashboard() {
               </div>
             ) : (
               <div className="divide-y divide-white/5">
-                {recent.map((a) => (
+                {(Array.isArray(recent) ? recent : []).map((a) => (
                   <Link
                     key={a.id}
                     to={`/app/applications/${a.id}`}
