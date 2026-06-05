@@ -244,7 +244,7 @@ export default function Applications() {
             <div className="col-span-1">Status</div>
             <div className="col-span-1 text-right">Actions</div>
           </div>
-          {apps.map((a) => (
+          {(apps || []).map((a) => (
             <div key={a.id} className="grid grid-cols-1 md:grid-cols-12 gap-4 px-5 py-4 border-b border-white/5 hover:bg-white/[0.02] transition-colors items-center"
               data-testid={`app-row-${a.id}`}>
               <Link to={`/app/applications/${a.id}`} className="md:col-span-3 font-medium hover:text-[#FF3823]" data-testid={`app-company-${a.id}`}>{a.company}</Link>

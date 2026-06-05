@@ -152,7 +152,7 @@ export default function Dashboard() {
                 className="h-56"
                 data-testid="weekly-chart"
               >
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={300}>
                   <LineChart
                     data={stats?.weekly || []}
                     margin={{
